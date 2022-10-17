@@ -1,0 +1,22 @@
+---
+- name: Install dhcpcd
+  community.general.pacman:
+    name:
+      - dhcpcd
+    state: present
+  tags:
+    - network
+
+- name: Enable dhcpcd service
+  ansible.builtin.service:
+    name: dhcpcd.service
+    enabled: true
+  tags:
+    - network
+
+- name: Enable systemd-timesyncd service
+  ansible.builtin.service:
+    name: systemd-timesyncd.service
+    enabled: true
+  tags:
+    - time

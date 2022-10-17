@@ -1,0 +1,10 @@
+---
+- name: Install editors
+  community.general.pacman:
+    name: "{{ editors.name }}"
+    state: present
+
+- name: Install language servers
+  community.general.pacman:
+    name: "{{ editors.lang_servers }}"
+    state: present

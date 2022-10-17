@@ -1,0 +1,19 @@
+---
+- name: Install git
+  community.general.pacman:
+    name: git
+    state: present
+
+- name: Configure email
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ user.email }}"
+  become_user: "{{ user.name }}"
+
+- name: Configure name
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ user.git_name }}"
+  become_user: "{{ user.name }}"

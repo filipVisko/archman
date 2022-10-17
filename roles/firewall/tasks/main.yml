@@ -1,0 +1,15 @@
+---
+- name: Install firewalld
+  community.general.pacman:
+    name: firewalld
+    state: present
+  tags:
+    - firewall
+
+- name: Enable firewalld service
+  ansible.builtin.service:
+    name: firewalld.service
+    enabled: true
+    state: started
+  tags:
+    - firewall

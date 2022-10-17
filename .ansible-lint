@@ -1,0 +1,34 @@
+---
+exclude_paths:
+  - .cache/ # implicit unless exclude_paths is defined in config
+  - .github/
+  - test/fixtures/formatting-before/
+  - test/fixtures/formatting-prettier/
+
+# Mock modules or roles in order to pass ansible-playbook --syntax-check
+mock_modules:
+  - community.general.pacman
+  - community.general.git_config
+
+# Enable checking of loop variable prefixes in roles
+loop_var_prefix: "{role}_"
+
+use_default_rules: true
+
+skip_list:
+  - key-order
+  - meta-no-info
+
+enable_list:
+  - empty-string-compare # opt-in
+  - no-log-password # opt-in
+  - no-same-owner # opt-in
+
+# This makes the linter display but not fail for rules/tags listed below:
+warn_list:
+  - skip_this_tag
+  - experimental # experimental is included in the implicit list
+
+# Fix errors when linting
+write_list:
+  - all

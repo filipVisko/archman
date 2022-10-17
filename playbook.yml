@@ -1,0 +1,30 @@
+---
+- hosts: all
+  name: Install everything
+  become: true
+  roles:
+    - { role: base, tags: [base] }
+    - { role: xserver, tags: [xserver] }
+    - { role: git, tags: [git] }
+    - { role: microcode, tags: [microcode] }
+    - { role: kde-plasma, tags: [kde-plasma], when: desktop == 'kde' }
+    - { role: i3, tags: [i3], when: desktop == 'i3' }
+    - { role: lightdm, tags: [lightdm], when: display_manager == 'lightdm' }
+    - { role: alacritty, tags: [alacritty] }
+    - { role: browsers, tags: [browsers] }
+    - { role: editors, tags: [editors] }
+    - { role: golang, tags: [golang] }
+    - { role: filesystems, tags: [filesystems] }
+    - { role: firejail, tags: [firejail] }
+    - { role: firewall, tags: [firewall] }
+    - { role: fonts, tags: [fonts] }
+    - { role: signal, tags: [signal] }
+    - { role: ssd, tags: [ssd] }
+    - { role: ssh, tags: [ssh] }
+    - { role: hashicorp, tags: [hashicorp] }
+    - { role: containers, tags: [containers] }
+  vars_prompt:
+    - name: global_user_password
+      prompt: Enter desired user password
+      private: true
+      default: aPassword123

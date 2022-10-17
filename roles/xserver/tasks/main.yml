@@ -1,0 +1,10 @@
+---
+- name: Install Xorg
+  community.general.pacman:
+    name: xorg-server
+    state: present
+
+- name: Install video driver(s)
+  community.general.pacman:
+    name: "{{ video_drivers }}"
+    state: present

@@ -1,0 +1,20 @@
+---
+- name: Install consul
+  community.general.pacman:
+    name: consul
+    state: present
+
+- name: Install terraform
+  community.general.pacman:
+    name: terraform
+    state: present
+
+- name: Install vault
+  community.general.pacman:
+    name: vault
+    state: present
+
+- name: Install nomad
+  community.general.pacman:
+    name: nomad
+    state: present

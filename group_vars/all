@@ -1,0 +1,60 @@
+user:
+    name: filip
+    password: "{{ global_user_password }}"
+    uid: 1000
+    shell: zsh
+    email:  me@filip.dev
+    git_name: filipVisko
+    log:
+        dir: log
+        rotate: 8
+
+hostname: archman
+
+desktop: kde
+
+editors:
+    name:
+        - helix
+    lang_servers:
+        - bash-language-server
+        - gopls
+        - yaml-language-server
+
+video_drivers:
+    - nvidia
+
+base_packages:
+    - base-devel
+    - chezmoi
+    - coreutils
+    - fzf
+    - jq
+    - nmap
+    - sysstat
+    - the_silver_searcher
+    - tmux
+
+filesystem_packages:
+    - exfat-utils
+    - ntfs-3g
+
+bootloader: grub
+
+firejail:
+    blocklist:
+        - ~/.calendars
+        - ~/.contacts
+        - ~/personal
+        - ~/work
+
+journal:
+    max_size: 500M
+
+display_manager: lightdm
+
+base_fonts:
+    - ttf-fira-mono
+    - ttf-fira-code
+
+kernel_parameters: "nvidia-drm.modeset=1"

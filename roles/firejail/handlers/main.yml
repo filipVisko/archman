@@ -1,0 +1,5 @@
+---
+- name: Activate firejail profiles
+  ansible.builtin.command: /usr/local/bin/profile-activate
+  become: true
+  become_user: "{{ user.name }}"

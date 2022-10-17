@@ -1,0 +1,66 @@
+---
+- name: Install Firefox
+  community.general.pacman:
+    name: firefox
+    state: present
+  tags:
+    - firefox
+
+- name: Jail Firefox
+  ansible.builtin.file:
+    src: /usr/bin/firejail
+    dest: /usr/local/bin/firefox
+    state: link
+  tags:
+    - firefox
+    - firejail
+
+- name: Verify Firefox firejail local profile exists
+  ansible.builtin.file:
+    path: /etc/firejail/firefox.local
+    state: touch
+  tags:
+    - firefox
+    - firejail
+
+- name: Restrict Firefox access to /etc
+  ansible.builtin.lineinfile:
+    dest: /etc/firejail/firefox.local
+    regexp: ^private-etc
+    line: private-etc firejail,passwd,group,hostname,hosts,nsswitch.conf,resolv.conf,gtk-2.0,gtk-3.0,fonts,mime.types,asound.conf,pulse,localtime
+  tags:
+    - firefox
+    - firejail
+
+- name: Install Chromium
+  community.general.pacman:
+    name: chromium
+    state: present
+  tags:
+    - chromium
+
+- name: Jail Chromium
+  ansible.builtin.file:
+    src: /usr/bin/firejail
+    dest: /usr/local/bin/chromium
+    state: link
+  tags:
+    - chromium
+    - firejail
+
+- name: Verify Chromium firejail local profile exists
+  ansible.builtin.file:
+    path: /etc/firejail/chromium.local
+    state: touch
+  tags:
+    - chromium
+    - firejail
+
+- name: Restrict Chromium access to /etc
+  ansible.builtin.lineinfile:
+    dest: /etc/firejail/chromium.local
+    regexp: ^private-etc
+    line: private-etc firejail,passwd,group,hostname,hosts,nsswitch.conf,resolv.conf,gtk-2.0,gtk-3.0,fonts,mime.types,asound.conf,pulse,localtime
+  tags:
+    - chromium
+    - firejail

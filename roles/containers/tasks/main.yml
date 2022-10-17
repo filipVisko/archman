@@ -1,0 +1,71 @@
+---
+- name: Install kubectl
+  community.general.pacman:
+    name: kubectl
+    state: present
+
+- name: Install k9s
+  community.general.pacman:
+    name: k9s
+    state: present
+
+- name: Install minikube
+  community.general.pacman:
+    name: minikube
+    state: present
+
+- name: Install podman
+  community.general.pacman:
+    name: podman
+    state: present
+
+- name: Install containerd
+  community.general.pacman:
+    name: containerd
+    state: present
+
+- name: Start containerd service
+  ansible.builtin.service:
+    name: containerd.service
+    enabled: true
+    state: started
+
+- name: Ensure subuid file exists
+  ansible.builtin.file:
+    path: /etc/subuid
+    state: file
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Add subuids for rootless podman
+  ansible.builtin.command: usermod --add-subuids 10000-75535 {{ user.name }}
+
+- name: Ensure subgid file exists
+  ansible.builtin.file:
+    path: /etc/subgid
+    state: file
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Add subgids for rootless podman
+  ansible.builtin.command: usermod --add-subgids 10000-75535 {{ user.name }}
+
+- name: Ensure cross-user systemd configuration folder exists
+  ansible.builtin.file:
+    path: /etc/systemd/system/user@.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0751
+
+# https://rootlesscontaine.rs/getting-started/common/cgroup2/#enabling-cpu-cpuset-and-io-delegation
+- name: Copy resouce delegation configuration for systemd
+  ansible.builtin.copy:
+    src: delegate.conf
+    dest: /etc/systemd/system/user@.service.d/delegate.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Reload systemd config

@@ -1,0 +1,38 @@
+---
+- name: Copy pacman configuration file
+  ansible.builtin.copy:
+    src: pacman.conf
+    dest: /etc/pacman.conf
+
+- name: Refresh pacman mirrors
+  community.general.pacman:
+    update_cache: true
+
+- name: Set the hostname
+  ansible.builtin.hostname:
+    name: "{{ hostname }}"
+  when: hostname is defined
+
+- name: Set kernel parameters
+  ansible.builtin.lineinfile:
+    dest: /etc/default/grub
+    regexp: ^GRUB_CMDLINE_LINUX_DEFAULT
+    state: present
+    line: GRUB_CMDLINE_LINUX_DEFAULT="{{ kernel_parameters }}"
+  notify:
+    - Rebuild grub
+  tags:
+    - kernelparams
+
+- ansible.builtin.include_tasks: shell.yml
+  name: Install shell
+- ansible.builtin.include_tasks: user.yml
+  name: Create user
+- ansible.builtin.include_tasks: sudo.yml
+  name: Configure sudoers
+- ansible.builtin.include_tasks: packages.yml
+  name: Install packages
+- ansible.builtin.include_tasks: journal.yml
+  name: Configure journalctl
+- ansible.builtin.include_tasks: network.yml
+  name: Configure networking

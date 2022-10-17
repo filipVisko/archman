@@ -1,0 +1,5 @@
+---
+- name: Install filesystem packages
+  community.general.pacman:
+    name: "{{ filesystem_packages }}"
+    state: present

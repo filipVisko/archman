@@ -1,0 +1,5 @@
+---
+- name: Stop systemd per-user instance
+  ansible.builtin.service:
+    name: user@{{ user.uid }}
+    state: stopped

@@ -1,0 +1,39 @@
+---
+- name: Ensure jailed folders exist
+  ansible.builtin.file:
+    path: firejail_blocklist
+    state: directory
+    recurse: true
+  loop_control:
+    loop_var: firejail_blocklist
+  with_items: "{{ firejail.blocklist }}"
+
+- name: Install firejail
+  community.general.pacman:
+    name: firejail
+    state: present
+
+- name: Install firejail profile update script
+  ansible.builtin.copy:
+    src: profile-activate.sh
+    dest: /usr/local/bin/profile-activate
+    mode: 0755
+
+- name: Create firejail profile directory
+  ansible.builtin.file:
+    path: /usr/local/etc/firejail
+    state: directory
+
+- name: Verify firejail globals file exists
+  ansible.builtin.file:
+    path: /etc/firejail/globals.local
+    state: touch
+
+- name: Add blocklist to globals
+  ansible.builtin.lineinfile:
+    dest: /etc/firejail/globals.local
+    state: present
+    line: blocklist {{ firejail_blocklist }}
+  loop_control:
+    loop_var: firejail_blocklist
+  with_items: "{{ firejail.blocklist }}"

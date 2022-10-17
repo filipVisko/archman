@@ -1,0 +1,16 @@
+---
+- name: Install zip archive utilities
+  community.general.pacman:
+    name:
+      - zip
+      - unzip
+    state: present
+  tags:
+    - zip
+
+- name: Install unrar
+  community.general.pacman:
+    name: unrar
+    state: present
+  tags:
+    - unrar

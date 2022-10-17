@@ -1,0 +1,11 @@
+---
+- name: Install hdparm
+  community.general.pacman:
+    name: hdparm
+    state: present
+
+- name: Enable and start weekly filesystem TRIM timer
+  ansible.builtin.service:
+    name: fstrim.timer
+    enabled: true
+    state: started
