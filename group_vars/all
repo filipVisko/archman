@@ -28,9 +28,14 @@ base_packages:
     - base-devel
     - chezmoi
     - coreutils
+    - dnsutils
     - fzf
+    - htop
+    - jo
     - jq
     - nmap
+    - shellcheck
+    - shfmt
     - sysstat
     - the_silver_searcher
     - tmux
@@ -43,9 +48,8 @@ bootloader: grub
 
 firejail:
     blocklist:
-        - ~/.calendars
-        - ~/.contacts
         - ~/personal
+        - ~/.thunderbird
         - ~/work
 
 journal:
@@ -54,7 +58,12 @@ journal:
 display_manager: lightdm
 
 base_fonts:
-    - ttf-fira-mono
     - ttf-fira-code
+    - ttf-fira-mono
 
 kernel_parameters: "nvidia-drm.modeset=1"
+
+vpn:
+    exit_node: true
+    ipv4: true
+    ipv6: false

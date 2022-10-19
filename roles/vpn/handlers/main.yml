@@ -1,0 +1,4 @@
+---
+- name: Enable ip forwarding
+  ansible.builtin.command: sysctl -p /etc/sysctl.conf
+  become: true

@@ -1,8 +1,8 @@
 diff:
-	sudo ansible-playbook playbook.yml --inventory inventory --diff --check
+	sudo ansible-playbook playbook.yml --diff --check
 
-apply:
-	sudo ansible-playbook playbook.yml --inventory inventory --diff
+apply: 
+	sudo ansible-playbook playbook.yml --diff
 
 lint:
 	pre-commit run --all-files
