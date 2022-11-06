@@ -1,7 +1,7 @@
 diff:
 	sudo ansible-playbook playbook.yml --diff --check
 
-apply: 
+apply:
 	sudo ansible-playbook playbook.yml --diff
 
 lint:

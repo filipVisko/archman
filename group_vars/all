@@ -5,6 +5,7 @@ user:
     shell: zsh
     email:  me@filip.dev
     git_name: filipVisko
+    timezone: Europe/London
     log:
         dir: log
         rotate: 8
@@ -13,9 +14,13 @@ hostname: archman
 
 desktop: kde
 
+dotfiles:
+    url: git@github.com:filipVisko/dotfiles.git
+
 editors:
     name:
         - helix
+        - vim
     lang_servers:
         - bash-language-server
         - gopls
@@ -26,13 +31,16 @@ video_drivers:
 
 base_packages:
     - base-devel
-    - chezmoi
     - coreutils
     - dnsutils
     - fzf
+    - git
+    - git-annex
     - htop
     - jo
     - jq
+    - lf
+    - neofetch
     - nmap
     - shellcheck
     - shfmt
@@ -54,8 +62,6 @@ firejail:
 
 journal:
     max_size: 500M
-
-display_manager: lightdm
 
 base_fonts:
     - ttf-fira-code

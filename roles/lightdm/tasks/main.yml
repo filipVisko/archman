@@ -10,3 +10,11 @@
   ansible.builtin.service:
     name: lightdm.service
     enabled: true
+
+- name: Copy gkt-greeter conf
+  ansible.builtin.copy:
+    src: lightdm-gtk-greeter.conf
+    dest: /etc/lightdm/lightdm-gtk-greeter.conf
+    owner: root
+    group: root
+    mode: 0644

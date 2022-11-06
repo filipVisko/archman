@@ -9,7 +9,7 @@
     - { role: microcode, tags: [microcode] }
     - { role: kde_plasma, tags: [kde], when: desktop == 'kde' }
     - { role: i3, tags: [i3], when: desktop == 'i3' }
-    - { role: lightdm, tags: [lightdm], when: display_manager == 'lightdm' }
+    - { role: lightdm, tags: [lightdm] }
     - { role: alacritty, tags: [alacritty] }
     - { role: browsers, tags: [browsers] }
     - { role: editors, tags: [editors] }
@@ -25,6 +25,7 @@
     - { role: containers, tags: [containers] }
     - { role: vpn, tags: [vpn] }
     - { role: email, tags: [email] }
+    - { role: dotfiles, tags: [dotfiles] }
   vars_prompt:
     - name: global_user_password
       prompt: Enter on_create user password
