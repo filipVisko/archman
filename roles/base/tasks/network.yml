@@ -16,17 +16,17 @@
   tags:
     - time
 
-- name: Install dhcpcd
+- name: Install networkmanager
   community.general.pacman:
     name:
-      - dhcpcd
+      - networkmanager
     state: present
   tags:
     - network
 
-- name: Enable dhcpcd service
+- name: Enable networkmanager service
   ansible.builtin.service:
-    name: dhcpcd.service
+    name: NetworkManager.service
     enabled: true
   tags:
     - network

@@ -17,14 +17,12 @@
     - { role: filesystems, tags: [filesystems] }
     - { role: firejail, tags: [firejail] }
     - { role: firewall, tags: [firewall] }
-    - { role: fonts, tags: [fonts] }
     - { role: signal, tags: [signal] }
     - { role: ssd, tags: [ssd] }
     - { role: ssh, tags: [ssh] }
     - { role: hashicorp, tags: [hashicorp] }
     - { role: containers, tags: [containers] }
-    - { role: vpn, tags: [vpn] }
-    - { role: email, tags: [email] }
+    - { role: vpn, tags: [vpn], when: vpn.enabled == 'true' }
     - { role: dotfiles, tags: [dotfiles] }
   vars_prompt:
     - name: global_user_password
