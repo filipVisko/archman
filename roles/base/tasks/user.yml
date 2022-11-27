@@ -10,23 +10,10 @@
   ansible.builtin.user:
     name: "{{ user.name }}"
     groups: "{{ user.name }}"
-    password: "{{ user.password | password_hash('sha512') }}"
+    password: "{{ user.password | default('password', true) | password_hash('sha512') }}"
     shell: /usr/bin/{{ user.shell }}
     update_password: on_create
     append: true
-  tags:
-    - user
-
-- name: Install logrotate
-  community.general.pacman:
-    name: logrotate
-    state: present
-
-- name: Push logrotate config for user logs
-  ansible.builtin.template:
-    src: logrotate.j2
-    dest: /etc/logrotate.d/user
-  when: user.log.dir is defined
   tags:
     - user
 

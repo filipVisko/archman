@@ -6,9 +6,6 @@ user:
     email:  me@filip.dev
     git_name: filipVisko
     timezone: Europe/London
-    log:
-        dir: log
-        rotate: 8
 
 hostname: archman
 
@@ -20,11 +17,13 @@ dotfiles:
 editors:
     name:
         - helix
-        - vim
+        - neovim
     lang_servers:
         - bash-language-server
         - gopls
         - yaml-language-server
+        - shellcheck
+        - shfmt
 
 video_drivers:
     - nvidia
@@ -35,15 +34,12 @@ base_packages:
     - dnsutils
     - fzf
     - git
-    - git-annex
+    - git-delta
     - htop
     - jo
     - jq
     - lf
-    - neofetch
     - nmap
-    - shellcheck
-    - shfmt
     - sysstat
     - the_silver_searcher
     - tmux
@@ -63,13 +59,10 @@ firejail:
 journal:
     max_size: 500M
 
-base_fonts:
-    - ttf-fira-code
-    - ttf-fira-mono
-
-kernel_parameters: "nvidia-drm.modeset=1"
+kernel_parameters: "loglevel=3 quiet nvidia-drm.modset=1"
 
 vpn:
+    enabled: false
     exit_node: true
     ipv4: true
     ipv6: false
