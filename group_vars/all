@@ -27,6 +27,7 @@ editors:
 
 video_drivers:
     - nvidia
+    - nvidia-settings
 
 base_packages:
     - base-devel
@@ -59,7 +60,7 @@ firejail:
 journal:
     max_size: 500M
 
-kernel_parameters: "loglevel=3 quiet nvidia-drm.modset=1"
+kernel_parameters: "loglevel=3 quiet nvidia_drm.modset=1"
 
 vpn:
     enabled: false

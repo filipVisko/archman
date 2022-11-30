@@ -1,9 +1,2 @@
 ## {{ ansible_managed }}
-##
-## User privilege specification
-##
-root ALL=(ALL:ALL) ALL
-
-## Read drop-in files from /etc/sudoers.d
-@includedir /etc/sudoers.d
-
+{{ user.name }} ALL=(ALL) ALL
