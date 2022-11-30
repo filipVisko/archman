@@ -6,7 +6,14 @@ It lacks the security hardening required for supporting laptops at the moment.
 
 
 ```bash
-ansible-playbook playbook.yml --inventory inventory
+# Run ansible in 'dry-run' mode and show all potential changes
+make diff
+
+# Apply the entire Ansible configuration
+make apply
+
+# Or selectively apply specific roles
+ansible-playbook playbook.yml --tags containers
 ```
 
 ## Dotfiles
@@ -24,7 +31,13 @@ Sandboxing is available via `firejail`. Blocklisted folders can be added into th
 
 ## Containers
 
-Minikube and podman are used to provide a rootless local developer k8s environment.
+Minikube and podman are used to provide a local k8s environment.
+Set your container runtime and configure a rootless engine to get started.
+
+```
+minikube config set rootless true
+minikube config set container-runtime containerd
+```
 
 ## SSH
 
