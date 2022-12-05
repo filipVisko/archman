@@ -11,9 +11,6 @@ hostname: archman
 
 desktop: kde
 
-dotfiles:
-    url: git@github.com:filipVisko/dotfiles.git
-
 editors:
     name:
         - helix
@@ -45,6 +42,7 @@ base_packages:
     - the_silver_searcher
     - tmux
     - man
+    - chezmoi
 
 filesystem_packages:
     - exfat-utils

@@ -23,7 +23,6 @@
     - { role: hashicorp, tags: [hashicorp] }
     - { role: containers, tags: [containers] }
     - { role: vpn, tags: [vpn], when: vpn.enabled == 'true' }
-    - { role: dotfiles, tags: [dotfiles] }
   vars_prompt:
     - name: global_user_password
       prompt: Enter on_create user password
