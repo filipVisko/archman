@@ -44,6 +44,7 @@ base_packages:
     - sysstat
     - the_silver_searcher
     - tmux
+    - man
 
 filesystem_packages:
     - exfat-utils
